@@ -238,6 +238,65 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
 .f-r{display:flex;gap:24px}
 .f-r a{font-size:11px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
 .f-r a:hover{color:var(--gold)}
+
+/* ============ MOBILE / RESPONSIVE ============ */
+html{-webkit-text-size-adjust:100%}
+img{max-width:100%}
+.nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:34px;height:34px;background:none;border:none;cursor:pointer;padding:0;z-index:210}
+.nav-burger span{display:block;width:100%;height:2px;background:var(--white);border-radius:2px;transition:transform .3s,opacity .3s}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media (max-width:960px){
+  nav{padding:0 24px}
+  .nav-menu{display:none}
+  .nav-burger{display:flex}
+  nav.menu-open .nav-menu{
+    display:flex;position:absolute;top:70px;left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:0;
+    background:rgba(6,16,30,.98);backdrop-filter:blur(14px);
+    border-top:1px solid rgba(196,151,58,.15);padding:8px 24px 20px}
+  nav.menu-open .nav-menu a{padding:14px 4px;width:100%;border-bottom:1px solid rgba(255,255,255,.06);text-align:left}
+  nav.menu-open .nav-menu .nav-btn{margin-top:10px;text-align:center;padding:14px 22px!important}
+  .hero-body{padding:0 24px 56px}
+  .hero-h1{font-size:clamp(42px,13vw,72px)}
+  .hero-sub{font-size:15px}
+  .hero-stats{flex-wrap:wrap;row-gap:14px}
+  .stat-u{padding:8px 20px 8px 0;border-right:none}
+  .hero-scroll{display:none}
+  section{padding:64px 24px}
+  .fleet-inner,.contact-inner{padding:64px 24px}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .about-visuals{order:1}
+  .about-copy{order:2}
+  .ab-mini-grid{grid-template-columns:1fr 1fr}
+  .vm-wrap{grid-template-columns:1fr;gap:20px}
+  .vm-v,.vm-m{padding:36px 26px}
+  .svc-grid{grid-template-columns:1fr;gap:16px}
+  .fleet-gallery{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto}
+  .gal-cell.big{grid-column:1/3;grid-row:1;aspect-ratio:16/9}
+  .fleet-grid{grid-template-columns:1fr}
+  .cli-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .contact-wrap{grid-template-columns:1fr;gap:40px}
+  .c-form{padding:28px}
+  footer{flex-direction:column;align-items:flex-start;gap:18px;padding:28px 24px}
+  .f-r{flex-wrap:wrap;gap:14px 20px}
+}
+@media (max-width:520px){
+  .hero-h1{font-size:clamp(34px,15vw,52px)}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .hero-actions a{text-align:center}
+  .stat-n{font-size:30px}
+  .sh1{font-size:clamp(28px,9vw,40px)}
+  .lead{font-size:15px}
+  .ab-mini-grid{grid-template-columns:1fr}
+  .detail-strip{grid-template-columns:1fr}
+  .cli-grid{grid-template-columns:1fr}
+  .fc{flex-direction:column;align-items:flex-start;gap:10px}
+  .fc-specs{grid-template-columns:1fr 1fr}
+  .ticker-track span{font-size:9px}
+}
 </style>
 </head>
 <body>
@@ -260,12 +319,13 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
     <li><a href="#clients">Clients</a></li>
     <li><a href="#contact" class="nav-btn">Contact Us</a></li>
   </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-parallax" id="hero-parallax">
-    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&q=90&fit=crop" alt="Tugboat at sea" loading="eager">
+    <img src="https://images.unsplash.com/photo-1782494845198-9aea5d5ba609?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tugboat at sea" loading="eager">
   </div>
   <div class="hero-gradient"></div>
   <div class="hero-vignette"></div>
@@ -479,6 +539,20 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
 // NAV scroll
 const nav=document.getElementById('main-nav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60);},{passive:true});
+// Mobile menu toggle
+const burger=document.getElementById('nav-burger');
+if(burger){
+  burger.addEventListener('click',()=>{
+    nav.classList.toggle('menu-open');
+    burger.classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-menu a').forEach(a=>{
+    a.addEventListener('click',()=>{
+      nav.classList.remove('menu-open');
+      burger.classList.remove('open');
+    });
+  });
+}
 // Hero parallax
 const heroP=document.getElementById('hero-parallax');
 const contactP=document.getElementById('contact-parallax');
