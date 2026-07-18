@@ -21,11 +21,11 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--white);o
 /* Single large watermark — not tiled */
 .wm-overlay{
   position:fixed;
-  bottom:-80px;right:-80px;
-  width:520px;height:520px;
+  bottom:-70px;left:50%;transform:translateX(-50%);
+  width:460px;height:460px;
   background-image:url('assets/logo_quanta_icon.png');
-  background-repeat:no-repeat;background-size:contain;
-  opacity:.035;pointer-events:none;z-index:1;
+  background-repeat:no-repeat;background-size:contain;background-position:center;
+  opacity:.05;pointer-events:none;z-index:3;
 }
 
 nav{position:fixed;top:0;left:0;right:0;z-index:200;height:70px;
@@ -327,9 +327,11 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
 
   /* Hero */
   .hero{height:100svh}
+  /* Shift crop right so the barge + tug are visible on portrait screens */
+  .hero-parallax img{object-position:72% center}
   .hero-body{padding:0 22px 50px;max-width:100%}
   .hero-kicker{font-size:9px;margin-bottom:16px}
-  .hero-h1{font-size:clamp(40px,13vw,64px);line-height:.95}
+  .hero-h1{font-size:clamp(32px,10.5vw,50px);line-height:.96;letter-spacing:-.01em}
   .hero-rule{margin:18px 0}
   .hero-sub{font-size:14.5px;margin-bottom:32px}
   .hero-actions{margin-bottom:36px;gap:10px}
@@ -412,8 +414,8 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
   .f-l{flex-direction:column;align-items:flex-start;gap:10px}
   .f-r{flex-wrap:wrap;gap:14px}
 
-  /* Watermark - smaller on mobile so it doesn't dominate */
-  .wm-overlay{width:280px;height:280px;bottom:-40px;right:-40px}
+  /* Watermark - centered and visible on mobile */
+  .wm-overlay{width:300px;height:300px;bottom:-46px;left:50%;right:auto;transform:translateX(-50%);opacity:.06}
 
   /* Lightbox */
   .lb-content{max-width:100%}
@@ -424,7 +426,7 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
    SMALL MOBILE — max-width: 380px
    ═══════════════════════════════════════════ */
 @media (max-width: 380px) {
-  .hero-h1{font-size:clamp(34px,12vw,48px)}
+  .hero-h1{font-size:clamp(28px,9.5vw,40px)}
   .stat-u{flex:1 1 100%;border-right:none;padding-right:0}
   .detail-strip{grid-template-columns:1fr}
   .cli-grid{grid-template-columns:1fr}
