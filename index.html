@@ -265,6 +265,170 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
   display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;transition:all .2s}
 .lb-close:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
 .lb-title{position:absolute;bottom:-40px;left:0;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:white}
+
+
+/* ═══════════════════════════════════════════
+   HAMBURGER MENU (hidden on desktop)
+   ═══════════════════════════════════════════ */
+.nav-hamburger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:32px;height:32px;background:none;border:none;cursor:pointer;padding:0;z-index:210;
+}
+.nav-hamburger span{
+  display:block;width:100%;height:2px;background:var(--white);border-radius:2px;
+  transition:transform .3s,opacity .3s;
+}
+.nav-hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.active span:nth-child(2){opacity:0}
+.nav-hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ═══════════════════════════════════════════
+   TABLET — max-width: 1024px
+   ═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  section{padding:80px 40px}
+  .hero-body{padding:0 40px 60px}
+  .contact-inner{padding:80px 40px}
+  .fleet-inner{padding:80px 40px}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .cli-grid{grid-template-columns:repeat(3,1fr)}
+  .about-grid{gap:50px}
+  .vm-wrap{gap:20px}
+  .contact-wrap{gap:50px}
+  .hero-stats{flex-wrap:wrap;row-gap:16px}
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE — max-width: 768px
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  body{overflow-x:hidden}
+
+  /* Nav */
+  nav{padding:0 20px;height:64px}
+  .nav-logo-img{height:34px}
+  .nav-id{font-size:11px}
+  .nav-id small{font-size:8px}
+  .nav-hamburger{display:flex}
+  .nav-menu{
+    position:fixed;top:64px;left:0;right:0;bottom:0;
+    background:rgba(6,16,30,.98);backdrop-filter:blur(16px);
+    flex-direction:column;align-items:flex-start;justify-content:flex-start;
+    padding:32px 28px;gap:0;
+    transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);
+    overflow-y:auto;
+  }
+  .nav-menu.open{transform:translateX(0)}
+  .nav-menu li{width:100%;border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav-menu li a{display:block;padding:18px 4px;font-size:14px;width:100%}
+  .nav-btn{margin-top:20px;text-align:center;border-radius:2px!important}
+  .nav-social{border-left:none;padding-left:4px;margin-left:0;margin-top:20px}
+
+  /* Hero */
+  .hero{height:100svh}
+  .hero-body{padding:0 22px 50px;max-width:100%}
+  .hero-kicker{font-size:9px;margin-bottom:16px}
+  .hero-h1{font-size:clamp(40px,13vw,64px);line-height:.95}
+  .hero-rule{margin:18px 0}
+  .hero-sub{font-size:14.5px;margin-bottom:32px}
+  .hero-actions{margin-bottom:36px;gap:10px}
+  .btn-a,.btn-b{padding:13px 24px;font-size:10px}
+  .hero-stats{flex-wrap:wrap;gap:0;row-gap:14px}
+  .stat-u{padding:0 20px 0 0;border-right:none;flex:1 1 40%;min-width:110px}
+  .stat-n{font-size:28px}
+  .stat-l{font-size:9px}
+  .hero-scroll{display:none}
+
+  /* Ticker */
+  .ticker-track span{font-size:9px}
+
+  /* Section shell */
+  section{padding:56px 20px}
+  .lbl{font-size:9px}
+  .sh1{font-size:clamp(28px,8vw,40px);margin-bottom:16px}
+  .lead{font-size:14.5px}
+
+  /* About */
+  .about-grid{grid-template-columns:1fr;gap:36px;margin-top:36px}
+  .about-visuals{order:1}
+  .about-copy{order:2}
+  .ab-badge{font-size:10px;padding:7px 14px;top:-12px;left:-8px}
+  .ab-corner{display:none}
+  .about-copy h3{font-size:19px}
+  .about-copy p{font-size:14px}
+  .detail-strip{grid-template-columns:1fr 1fr;gap:8px;margin-top:22px}
+  .ds{padding:10px 12px}
+  .ds-v{font-size:12px}
+
+  /* Vision/Mission */
+  .vm-wrap{grid-template-columns:1fr;gap:16px;margin-top:36px}
+  .vm-v,.vm-m{padding:32px 26px}
+  .vm-v p{font-size:15px}
+  .vm-m li{font-size:14px}
+
+  /* Services */
+  .svc-grid{grid-template-columns:1fr;gap:14px;margin-top:36px}
+  .svc{padding:28px 22px}
+  .svc-icon{width:44px;height:44px;top:16px;right:16px}
+  .svc-num{font-size:38px;margin-bottom:10px}
+  .svc h3{font-size:16px}
+  .svc p{font-size:13px}
+
+  /* Fleet gallery — full restructure for mobile */
+  .fleet-gallery{
+    display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;
+    gap:8px;height:auto;margin:32px 0 32px;
+  }
+  .gal-cell{aspect-ratio:4/3}
+  .gal-cell.big{grid-column:1/3;grid-row:auto;aspect-ratio:16/10}
+  .gal-label{font-size:8px;padding:12px 10px 8px}
+
+  .fleet-section-label{font-size:9px;margin-bottom:16px}
+  .fleet-grid{grid-template-columns:1fr;gap:10px}
+  .fc{flex-direction:column}
+  .fc-thumb{width:100%;height:160px}
+  .fc-body{padding:18px 20px}
+  .fc h4{font-size:15px;margin-bottom:10px}
+  .fc-specs{gap:6px 14px}
+
+  /* Clients */
+  .cli-grid{grid-template-columns:repeat(2,1fr);gap:10px;margin-top:36px}
+  .cli-card{padding:18px 12px;min-height:120px;gap:10px}
+  .cli-logo-wrap{height:40px}
+  .cli-logo-wrap img{max-height:40px;max-width:110px}
+  .cli-init{width:38px;height:38px;font-size:14px}
+  .cli-name{font-size:10px}
+
+  /* Contact */
+  .contact-inner{padding:56px 20px}
+  .contact-wrap{grid-template-columns:1fr;gap:36px;margin-top:36px}
+  .c-form{padding:26px 22px}
+  .c-form h3{font-size:19px;margin-bottom:20px}
+  .c-val{font-size:13.5px}
+
+  /* Footer */
+  footer{padding:28px 20px;flex-direction:column;gap:18px;align-items:flex-start}
+  .f-l{flex-direction:column;align-items:flex-start;gap:10px}
+  .f-r{flex-wrap:wrap;gap:14px}
+
+  /* Watermark - smaller on mobile so it doesn't dominate */
+  .wm-overlay{width:280px;height:280px;bottom:-40px;right:-40px}
+
+  /* Lightbox */
+  .lb-content{max-width:100%}
+  .lb-close{top:-44px;width:34px;height:34px}
+}
+
+/* ═══════════════════════════════════════════
+   SMALL MOBILE — max-width: 380px
+   ═══════════════════════════════════════════ */
+@media (max-width: 380px) {
+  .hero-h1{font-size:clamp(34px,12vw,48px)}
+  .stat-u{flex:1 1 100%;border-right:none;padding-right:0}
+  .detail-strip{grid-template-columns:1fr}
+  .cli-grid{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -276,7 +440,10 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
     <img class="nav-logo-img" src="assets/logo_quanta_full.png" alt="PT Quanta Indonesia">
     <div class="nav-id">PT QUANTA INDONESIA<small>Shipping Company</small></div>
   </a>
-  <ul class="nav-menu">
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-menu" id="nav-menu">
     <li><a href="quanta_website_english.html#about">About</a></li>
     <li><a href="quanta_website_english.html#vision">Vision</a></li>
     <li><a href="quanta_website_english.html#services">Services</a></li>
@@ -725,6 +892,21 @@ document.getElementById('wa-send-btn').addEventListener('click', function() {
   if (inquiry) message += `*Pesan:* ${inquiry}%0A`;
   if (!name && !email && !inquiry) message = 'Halo PT Quanta Indonesia, saya ingin menanyakan layanan Anda.';
   window.open(`https://wa.me/6287875293374?text=${message}`, '_blank');
+});
+
+// Mobile hamburger menu
+function toggleMobileMenu() {
+  document.getElementById('nav-hamburger').classList.toggle('active');
+  document.getElementById('nav-menu').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('nav-menu').classList.contains('open') ? 'hidden' : '';
+}
+// Close menu when a nav link is clicked
+document.querySelectorAll('.nav-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('nav-hamburger').classList.remove('active');
+    document.getElementById('nav-menu').classList.remove('open');
+    document.body.style.overflow = '';
+  });
 });
 </script>
 </body>
