@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — PT Quanta Indonesia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#06101E;--ink2:#0D1F35;--ink3:#1A3557;
+  --sea:#1D6FA8;--sea2:#2B8FD4;--sea3:#4AABEE;
+  --gold:#C4973A;--gold2:#E0B84A;
+  --fog:#EEF3F9;--fog2:#F8FAFD;--white:#FFFFFF;
+  --mist:#8A9BB0;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--ink);min-height:100vh}
+
+.wm-overlay{
+  position:fixed;bottom:-80px;right:-80px;width:520px;height:520px;
+  background-image:url('assets/logo_quanta_icon.png');
+  background-repeat:no-repeat;background-size:contain;
+  opacity:.03;pointer-events:none;z-index:1;
+}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:70px;
+  display:flex;align-items:center;justify-content:space-between;padding:0 56px;
+  background:rgba(6,16,30,.96);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(196,151,58,.15)}
+.nav-brand{display:flex;align-items:center;gap:13px;text-decoration:none}
+.nav-logo-img{height:42px;width:auto;object-fit:contain;display:block;filter:brightness(0) invert(1)}
+.nav-id{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--white);letter-spacing:.04em;line-height:1.2}
+.nav-id small{display:block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:400;color:var(--gold);letter-spacing:.12em}
+.nav-menu{display:flex;align-items:center;gap:30px;list-style:none}
+.nav-menu a{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s}
+.nav-menu a:hover, .nav-menu a.active{color:var(--gold)}
+.nav-btn{background:var(--sea)!important;color:var(--white)!important;
+  padding:9px 22px!important;border-radius:2px!important;letter-spacing:.1em!important;font-weight:700!important}
+.nav-btn:hover{background:var(--sea2)!important}
+.nav-social{display:flex;align-items:center;margin-left:6px;padding-left:20px;border-left:1px solid rgba(255,255,255,.15)}
+.nav-social a{color:rgba(255,255,255,.6);transition:color .2s;display:flex}
+.nav-social a:hover{color:var(--gold)}
+
+.g-hero{padding:160px 80px 80px;background:linear-gradient(160deg,var(--ink) 0%,var(--ink3) 100%);position:relative;overflow:hidden;z-index:2}
+.g-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 20%,rgba(29,111,168,.15) 0%,transparent 70%);pointer-events:none;z-index:0}
+.g-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2);margin-bottom:16px;position:relative;z-index:5}
+.g-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(42px,6vw,72px);line-height:1.0;color:var(--white);margin-bottom:20px;letter-spacing:-.02em;position:relative}
+.g-h1 em{font-style:normal;color:var(--sea3)}
+.g-lead{font-size:16px;line-height:1.75;color:rgba(255,255,255,.6);max-width:560px;font-weight:300;position:relative}
+.g-back{display:inline-flex;align-items:center;gap:8px;margin-top:28px;color:rgba(255,255,255,.55);
+  font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;
+  transition:color .2s;position:relative;z-index:5;pointer-events:auto;cursor:pointer}
+.g-back:hover{color:var(--gold)}
+
+.g-grid-section{padding:70px 80px 120px;background:var(--ink);position:relative;z-index:2}
+.g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.gitem{position:relative;border-radius:4px;overflow:hidden;cursor:pointer;aspect-ratio:4/3;background:var(--ink3)}
+.gitem img{width:100%;height:100%;object-fit:cover;display:block;
+  filter:brightness(.85) saturate(1.05);transition:transform .6s cubic-bezier(.16,1,.3,1),filter .4s}
+.gitem:hover img{transform:scale(1.08);filter:brightness(1) saturate(1.1)}
+.gitem-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:22px 20px 18px;background:linear-gradient(to top,rgba(6,16,30,.9) 0%,rgba(6,16,30,.15) 55%,transparent 100%)}
+.gitem-tag{display:inline-block;background:rgba(196,151,58,.18);border:1px solid rgba(196,151,58,.4);
+  color:var(--gold2);font-family:'DM Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;padding:3px 9px;border-radius:2px;margin-bottom:10px;width:fit-content}
+.gitem-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--white);margin-bottom:4px}
+.gitem-cap{font-size:12px;color:rgba(255,255,255,.6)}
+
+.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(4,10,20,.96);display:none;
+  align-items:center;justify-content:center;padding:40px;backdrop-filter:blur(8px)}
+.lightbox.active{display:flex}
+.lb-content{max-width:1100px;width:100%;position:relative}
+.lb-img-wrap{border-radius:4px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.5)}
+.lb-img-wrap img{width:100%;display:block;max-height:75vh;object-fit:contain;background:#000}
+.lb-info{padding:20px 4px 0;display:flex;justify-content:space-between;align-items:flex-end}
+.lb-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--white);margin-bottom:6px}
+.lb-cap{font-size:13px;color:rgba(255,255,255,.55)}
+.lb-close{position:absolute;top:-50px;right:0;width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:white;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;transition:all .2s}
+.lb-close:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:white;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;transition:all .2s;z-index:2}
+.lb-nav:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.lb-prev{left:-64px}
+.lb-next{right:-64px}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.05s}.d2{transition-delay:.15s}.d3{transition-delay:.25s}.d4{transition-delay:.35s}
+
+footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid rgba(196,151,58,.12);position:relative;z-index:2}
+.f-l{font-size:11px;color:rgba(255,255,255,.28);line-height:1.7;display:flex;align-items:center;gap:14px}
+.f-logo{height:28px;width:auto;object-fit:contain;opacity:.4;display:block;filter:brightness(0) invert(1)}
+.f-r{display:flex;align-items:center;gap:20px}
+.f-r a{font-size:11px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+.f-r a:hover{color:var(--gold)}
+.f-social{display:flex;gap:10px}
+.f-social a{color:rgba(255,255,255,.5);transition:color .2s;display:flex}
+.f-social a:hover{color:var(--gold)}
+
+@media (max-width: 900px) {
+  .g-grid{grid-template-columns:repeat(2,1fr)}
+  .lb-prev{left:8px}
+  .lb-next{right:8px}
+}
+</style>
+</head>
+<body>
+
+<div class="wm-overlay"></div>
+
+<nav id="main-nav" class="scrolled">
+  <a class="nav-brand" href="quanta_website_english.html">
+    <img class="nav-logo-img" src="assets/logo_quanta_full.png" alt="PT Quanta Indonesia">
+    <div class="nav-id">PT QUANTA INDONESIA<small>Shipping Company</small></div>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="quanta_website_english.html#about">About</a></li>
+    <li><a href="quanta_website_english.html#vision">Vision</a></li>
+    <li><a href="quanta_website_english.html#services">Services</a></li>
+    <li><a href="quanta_website_english.html#fleet">Fleet</a></li>
+    <li><a href="gallery.html" class="active">Gallery</a></li>
+    <li><a href="quanta_website_english.html#clients">Clients</a></li>
+    <li><a href="quanta_website_english.html#contact" class="nav-btn">Contact Us</a></li>
+    <li class="nav-social">
+      <a href="https://www.instagram.com/Indonesiaquanta_/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.41a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg></a>
+    </li>
+  </ul>
+</nav>
+
+<section class="g-hero">
+  <div class="g-lbl reveal">Photo Gallery</div>
+  <h1 class="g-h1 reveal d1">Our Fleet <em>in Action</em></h1>
+  <p class="g-lead reveal d2">A closer look at PT Quanta Indonesia's vessels and operations across Indonesian waters.</p>
+  <a href="quanta_website_english.html" class="g-back reveal d3">← Back to Homepage</a>
+</section>
+
+<section class="g-grid-section">
+  <div class="g-grid">
+    
+    <div class="gitem reveal d1" onclick="openLightbox(0)">
+      <img src="assets/ships/gallery_unloading.jpg" alt="Unloading Process" loading="lazy">
+      <div class="gitem-overlay">
+        <div class="gitem-tag">Operations</div>
+        <div class="gitem-title">Unloading Process</div>
+        <div class="gitem-cap">Coal terminal — barge unloading operation</div>
+      </div>
+    </div>
+    <div class="gitem reveal d2" onclick="openLightbox(1)">
+      <img src="assets/ships/gallery_max_christo.jpg" alt="TB Max Christo 07" loading="lazy">
+      <div class="gitem-overlay">
+        <div class="gitem-tag">Tug Boat</div>
+        <div class="gitem-title">TB Max Christo 07</div>
+        <div class="gitem-cap">Alongside BG Bulesko II</div>
+      </div>
+    </div>
+    <div class="gitem reveal d3" onclick="openLightbox(2)">
+      <img src="assets/ships/gallery_taurians_1.jpg" alt="TB Taurians One" loading="lazy">
+      <div class="gitem-overlay">
+        <div class="gitem-tag">Tug Boat</div>
+        <div class="gitem-title">TB Taurians One</div>
+        <div class="gitem-cap">Bow view — golden hour</div>
+      </div>
+    </div>
+    <div class="gitem reveal d4" onclick="openLightbox(3)">
+      <img src="assets/ships/gallery_taurians_2.jpg" alt="TB Taurians One" loading="lazy">
+      <div class="gitem-overlay">
+        <div class="gitem-tag">Tug Boat</div>
+        <div class="gitem-title">TB Taurians One</div>
+        <div class="gitem-cap">Full profile — sunset departure</div>
+      </div>
+    </div>
+    <div class="gitem reveal d1" onclick="openLightbox(4)">
+      <img src="assets/ships/gallery_bulesko_1.jpg" alt="BG Bulesko II" loading="lazy">
+      <div class="gitem-overlay">
+        <div class="gitem-tag">Barge</div>
+        <div class="gitem-title">BG Bulesko II</div>
+        <div class="gitem-cap">Alongside tug, river transit</div>
+      </div>
+    </div>
+    <div class="gitem reveal d2" onclick="openLightbox(5)">
+      <img src="assets/ships/gallery_bulesko_2.jpg" alt="BG Bulesko II" loading="lazy">
+      <div class="gitem-overlay">
+        <div class="gitem-tag">Operations</div>
+        <div class="gitem-title">BG Bulesko II</div>
+        <div class="gitem-cap">Night loading operation</div>
+      </div>
+    </div>
+    <div class="gitem reveal d3" onclick="openLightbox(6)">
+      <img src="assets/ships/gallery_bulesko_3.jpg" alt="BG Bulesko II" loading="lazy">
+      <div class="gitem-overlay">
+        <div class="gitem-tag">Operations</div>
+        <div class="gitem-title">BG Bulesko II</div>
+        <div class="gitem-cap">Under conveyor crane — daytime unloading</div>
+      </div>
+    </div>
+    <div class="gitem reveal d4" onclick="openLightbox(7)">
+      <img src="assets/ships/gallery_bulesko_4.jpg" alt="BG Bulesko II" loading="lazy">
+      <div class="gitem-overlay">
+        <div class="gitem-tag">Barge</div>
+        <div class="gitem-title">BG Bulesko II</div>
+        <div class="gitem-cap">With TB Max Christo 07 — open water</div>
+      </div>
+    </div>
+    <div class="gitem reveal d1" onclick="openLightbox(8)">
+      <img src="assets/ships/gallery_bulesko_5.jpg" alt="BG Bulesko II" loading="lazy">
+      <div class="gitem-overlay">
+        <div class="gitem-tag">Barge</div>
+        <div class="gitem-title">BG Bulesko II</div>
+        <div class="gitem-cap">Full profile — open water</div>
+      </div>
+    </div>
+    <div class="gitem reveal d2" onclick="openLightbox(9)">
+      <img src="assets/ships/gallery_indomarina_1.jpg" alt="BG Indomarina 3002" loading="lazy">
+      <div class="gitem-overlay">
+        <div class="gitem-tag">Barge</div>
+        <div class="gitem-title">BG Indomarina 3002</div>
+        <div class="gitem-cap">Bow view — river anchorage</div>
+      </div>
+    </div>
+    <div class="gitem reveal d3" onclick="openLightbox(10)">
+      <img src="assets/ships/gallery_indomarina_2.jpg" alt="BG Indomarina 3002" loading="lazy">
+      <div class="gitem-overlay">
+        <div class="gitem-tag">Barge</div>
+        <div class="gitem-title">BG Indomarina 3002</div>
+        <div class="gitem-cap">Cargo hold — loaded</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-l">
+    <img class="f-logo" src="assets/logo_quanta_full.png" alt="PT Quanta Indonesia">
+    © 2026 PT Quanta Indonesia. All rights reserved.
+  </div>
+  <div class="f-r">
+    <a href="quanta_website_english.html">Privacy Policy</a>
+    <a href="quanta_website_english.html">Terms of Service</a>
+    <a href="mailto:marketing_vessel@quantaindonesia.com">marketing_vessel@quantaindonesia.com</a>
+    <div class="f-social">
+      <a href="https://www.instagram.com/Indonesiaquanta_/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.41a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <div class="lb-content">
+    <div class="lb-close" onclick="closeLightbox()">✕</div>
+    <div class="lb-nav lb-prev" onclick="navLightbox(-1)">‹</div>
+    <div class="lb-nav lb-next" onclick="navLightbox(1)">›</div>
+    <div class="lb-img-wrap"><img id="lb-img" src="" alt=""></div>
+    <div class="lb-info">
+      <div>
+        <div class="lb-title" id="lb-title"></div>
+        <div class="lb-cap" id="lb-cap"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const galleryData = [
+  {src:"assets/ships/gallery_unloading.jpg",title:"Unloading Process",cap:"Coal terminal — barge unloading operation"},
+  {src:"assets/ships/gallery_max_christo.jpg",title:"TB Max Christo 07",cap:"Alongside BG Bulesko II"},
+  {src:"assets/ships/gallery_taurians_1.jpg",title:"TB Taurians One",cap:"Bow view — golden hour"},
+  {src:"assets/ships/gallery_taurians_2.jpg",title:"TB Taurians One",cap:"Full profile — sunset departure"},
+  {src:"assets/ships/gallery_bulesko_1.jpg",title:"BG Bulesko II",cap:"Alongside tug, river transit"},
+  {src:"assets/ships/gallery_bulesko_2.jpg",title:"BG Bulesko II",cap:"Night loading operation"},
+  {src:"assets/ships/gallery_bulesko_3.jpg",title:"BG Bulesko II",cap:"Under conveyor crane — daytime unloading"},
+  {src:"assets/ships/gallery_bulesko_4.jpg",title:"BG Bulesko II",cap:"With TB Max Christo 07 — open water"},
+  {src:"assets/ships/gallery_bulesko_5.jpg",title:"BG Bulesko II",cap:"Full profile — open water"},
+  {src:"assets/ships/gallery_indomarina_1.jpg",title:"BG Indomarina 3002",cap:"Bow view — river anchorage"},
+  {src:"assets/ships/gallery_indomarina_2.jpg",title:"BG Indomarina 3002",cap:"Cargo hold — loaded"}
+];
+let currentIdx = 0;
+
+function openLightbox(idx) {
+  currentIdx = idx;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function navLightbox(dir) {
+  currentIdx = (currentIdx + dir + galleryData.length) % galleryData.length;
+  updateLightbox();
+}
+function updateLightbox() {
+  const item = galleryData[currentIdx];
+  document.getElementById('lb-img').src = item.src;
+  document.getElementById('lb-title').textContent = item.title;
+  document.getElementById('lb-cap').innerHTML = item.cap;
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'ArrowRight') navLightbox(1);
+});
+
+const revEls = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+revEls.forEach(el => ro.observe(el));
+document.querySelectorAll('.g-hero .reveal').forEach((el,i) => {
+  setTimeout(() => el.classList.add('visible'), 150 + i*120);
+});
+</script>
+</body>
+</html>
