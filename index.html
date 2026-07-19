@@ -208,10 +208,15 @@ section{padding:110px 80px;position:relative;z-index:2}
 .fc-type{background:rgba(196,151,58,.12);border:1px solid rgba(196,151,58,.28);color:var(--gold2);font-family:'DM Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:2px;white-space:nowrap;flex-shrink:0;height:fit-content}
 
 .cli-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:64px}
-.cli-card{background:var(--white);border:1px solid rgba(26,53,87,.08);border-radius:3px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:150px;transition:box-shadow .3s,transform .3s cubic-bezier(.16,1,.3,1)}
+.cli-card{background:var(--white);border:1px solid rgba(26,53,87,.08);border-radius:3px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:150px;min-width:0;transition:box-shadow .3s,transform .3s cubic-bezier(.16,1,.3,1)}
 .cli-card:hover{box-shadow:0 12px 36px rgba(13,31,53,.1);transform:translateY(-5px)}
-.cli-logo-wrap{height:62px;display:flex;align-items:center;justify-content:center;max-width:100%}
-.cli-logo-wrap img{max-height:62px;max-width:210px;width:auto;object-fit:contain;display:block}
+.cli-logo-wrap{height:72px;display:flex;align-items:center;justify-content:center;max-width:100%;min-width:0}
+.cli-logo-wrap img{max-height:72px;max-width:min(230px,100%);width:auto;object-fit:contain;display:block}
+/* Very wide wordmark: let it use more of the card's width so it isn't squeezed short */
+.cli-logo-wrap img[src*="cemindo"]{max-width:min(250px,100%)}
+/* Portrait/narrow mark: give it more height so it reads at the same visual weight as the wide logos */
+.cli-card:has(img[src*="global_trans_energi"]) .cli-logo-wrap{height:92px}
+.cli-logo-wrap img[src*="global_trans_energi"]{max-height:92px}
 .cli-init{width:48px;height:48px;background:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:var(--white);transition:background .2s,transform .3s}
 .cli-card:hover .cli-init{background:var(--sea);transform:scale(1.1)}
 .cli-name{font-size:11.5px;font-weight:600;color:var(--ink);text-align:center;line-height:1.4}
@@ -397,8 +402,11 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
   /* Clients */
   .cli-grid{grid-template-columns:repeat(2,1fr);gap:10px;margin-top:36px}
   .cli-card{padding:18px 12px;min-height:120px;gap:10px}
-  .cli-logo-wrap{height:52px}
-  .cli-logo-wrap img{max-height:52px;max-width:150px}
+  .cli-logo-wrap{height:58px}
+  .cli-logo-wrap img{max-height:58px;max-width:min(160px,100%)}
+  .cli-logo-wrap img[src*="cemindo"]{max-width:min(170px,100%)}
+  .cli-card:has(img[src*="global_trans_energi"]) .cli-logo-wrap{height:74px}
+  .cli-logo-wrap img[src*="global_trans_energi"]{max-height:74px}
   .cli-init{width:38px;height:38px;font-size:14px}
   .cli-name{font-size:10px}
 
@@ -430,8 +438,11 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
   .stat-u{flex:1 1 100%;border-right:none;padding-right:0}
   .detail-strip{grid-template-columns:1fr}
   .cli-grid{grid-template-columns:1fr}
-  .cli-logo-wrap{height:56px}
-  .cli-logo-wrap img{max-height:56px;max-width:200px}
+  .cli-logo-wrap{height:64px}
+  .cli-logo-wrap img{max-height:64px;max-width:min(220px,100%)}
+  .cli-logo-wrap img[src*="cemindo"]{max-width:min(240px,100%)}
+  .cli-card:has(img[src*="global_trans_energi"]) .cli-logo-wrap{height:82px}
+  .cli-logo-wrap img[src*="global_trans_energi"]{max-height:82px}
 }
 
 </style>
@@ -666,35 +677,35 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
   <p class="lead reveal d2">Proudly serving 16+ leading companies across Indonesia's energy, cement, mining, and shipping industries.</p>
   <div class="cli-grid">
       <div class="cli-card reveal">
-        <div class="cli-logo-wrap"><img src="assets/logos/banpu.png" alt="Banpu Public Company Limited" loading="lazy"></div>
+        <div class="cli-logo-wrap"><img src="assets/logos/banpu.png?v=2" alt="Banpu Public Company Limited" loading="lazy"></div>
         <div class="cli-name">Banpu Public Company Limited</div>
       </div>
       <div class="cli-card reveal">
-        <div class="cli-logo-wrap"><img src="assets/logos/cemindo.png" alt="PT Cemindo Gemilang, Tbk" loading="lazy"></div>
+        <div class="cli-logo-wrap"><img src="assets/logos/cemindo.png?v=2" alt="PT Cemindo Gemilang, Tbk" loading="lazy"></div>
         <div class="cli-name">PT Cemindo Gemilang, Tbk</div>
       </div>
       <div class="cli-card reveal">
-        <div class="cli-logo-wrap"><img src="assets/logos/sle.png" alt="PT Sentosa Laju Energy, Tbk" loading="lazy"></div>
+        <div class="cli-logo-wrap"><img src="assets/logos/sle.png?v=2" alt="PT Sentosa Laju Energy, Tbk" loading="lazy"></div>
         <div class="cli-name">PT Sentosa Laju Energy, Tbk</div>
       </div>
       <div class="cli-card reveal">
-        <div class="cli-logo-wrap"><img src="assets/logos/sumber_daya_alam_mullia.png" alt="PT Sumber Daya Alam Mullia" loading="lazy"></div>
+        <div class="cli-logo-wrap"><img src="assets/logos/sumber_daya_alam_mullia.png?v=2" alt="PT Sumber Daya Alam Mullia" loading="lazy"></div>
         <div class="cli-name">PT Sumber Daya Alam Mullia</div>
       </div>
       <div class="cli-card reveal">
-        <div class="cli-logo-wrap"><img src="assets/logos/manoor_bulatn_lestari.png" alt="PT Manoor Bulatn Lestari" loading="lazy"></div>
+        <div class="cli-logo-wrap"><img src="assets/logos/manoor_bulatn_lestari.png?v=2" alt="PT Manoor Bulatn Lestari" loading="lazy"></div>
         <div class="cli-name">PT Manoor Bulatn Lestari</div>
       </div>
       <div class="cli-card reveal">
-        <div class="cli-logo-wrap"><img src="assets/logos/rencana_mulia_baratama.png" alt="PT Rencana Mulia Baratama" loading="lazy"></div>
+        <div class="cli-logo-wrap"><img src="assets/logos/rencana_mulia_baratama.png?v=2" alt="PT Rencana Mulia Baratama" loading="lazy"></div>
         <div class="cli-name">PT Rencana Mulia Baratama</div>
       </div>
       <div class="cli-card reveal">
-        <div class="cli-logo-wrap"><img src="assets/logos/pelayaran_brawijaya_maritim.png" alt="PT Pelayaran Brawijaya Maritim" loading="lazy"></div>
+        <div class="cli-logo-wrap"><img src="assets/logos/pelayaran_brawijaya_maritim.png?v=2" alt="PT Pelayaran Brawijaya Maritim" loading="lazy"></div>
         <div class="cli-name">PT Pelayaran Brawijaya Maritim</div>
       </div>
       <div class="cli-card reveal">
-        <div class="cli-logo-wrap"><img src="assets/logos/artha_yuta.png" alt="PT Artha Yuta" loading="lazy"></div>
+        <div class="cli-logo-wrap"><img src="assets/logos/artha_yuta.png?v=2" alt="PT Artha Yuta" loading="lazy"></div>
         <div class="cli-name">PT Artha Yuta</div>
       </div>
       <div class="cli-card reveal">
@@ -702,7 +713,7 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
         <div class="cli-name">PT Batu Berkah Nusantara</div>
       </div>
       <div class="cli-card reveal">
-        <div class="cli-logo-wrap"><img src="assets/logos/bumi_laut_shipping_service.png" alt="PT Bumi Laut Shipping Service" loading="lazy"></div>
+        <div class="cli-logo-wrap"><img src="assets/logos/bumi_laut_shipping_service.png?v=2" alt="PT Bumi Laut Shipping Service" loading="lazy"></div>
         <div class="cli-name">PT Bumi Laut Shipping Service</div>
       </div>
       <div class="cli-card reveal">
@@ -710,19 +721,19 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
         <div class="cli-name">PT Elmar</div>
       </div>
       <div class="cli-card reveal">
-        <div class="cli-logo-wrap"><img src="assets/logos/global_energi_lestari.png" alt="PT Global Energi Lestari" loading="lazy"></div>
+        <div class="cli-logo-wrap"><img src="assets/logos/global_energi_lestari.png?v=2" alt="PT Global Energi Lestari" loading="lazy"></div>
         <div class="cli-name">PT Global Energi Lestari</div>
       </div>
       <div class="cli-card reveal">
-        <div class="cli-logo-wrap"><img src="assets/logos/baramulti_sukses_sarana.png" alt="PT Baramulti Sukses Sarana" loading="lazy"></div>
+        <div class="cli-logo-wrap"><img src="assets/logos/baramulti_sukses_sarana.png?v=2" alt="PT Baramulti Sukses Sarana" loading="lazy"></div>
         <div class="cli-name">PT Baramulti Sukses Sarana</div>
       </div>
       <div class="cli-card reveal">
-        <div class="cli-logo-wrap"><img src="assets/logos/global_trans_energi_internasional.png" alt="PT Global Trans Energi Internasional" loading="lazy"></div>
+        <div class="cli-logo-wrap"><img src="assets/logos/global_trans_energi_internasional.png?v=2" alt="PT Global Trans Energi Internasional" loading="lazy"></div>
         <div class="cli-name">PT Global Trans Energi Internasional</div>
       </div>
       <div class="cli-card reveal">
-        <div class="cli-logo-wrap"><img src="assets/logos/bainra_lautan_utama.png" alt="PT Bainra Lautan Utama" loading="lazy"></div>
+        <div class="cli-logo-wrap"><img src="assets/logos/bainra_lautan_utama.png?v=2" alt="PT Bainra Lautan Utama" loading="lazy"></div>
         <div class="cli-name">PT Bainra Lautan Utama</div>
       </div>
       <div class="cli-card reveal">
