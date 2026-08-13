@@ -216,7 +216,7 @@ section{padding:110px 80px;position:relative;z-index:2}
 .cli-logo-wrap{height:72px;display:flex;align-items:center;justify-content:center;max-width:100%;min-width:0}
 .cli-logo-wrap img{max-height:72px;max-width:min(230px,100%);width:auto;object-fit:contain;display:block}
 /* Very wide wordmark: let it use more of the card's width so it isn't squeezed short */
-.cli-logo-wrap img[src*="cemindo"]{max-width:min(250px,100%)}
+.cli-logo-wrap img[src*="cemindo"],.cli-logo-wrap img[src*="/wim"]{max-width:min(250px,100%)}
 /* Portrait/narrow mark: give it more height so it reads at the same visual weight as the wide logos */
 .cli-card:has(img[src*="global_trans_energi"]) .cli-logo-wrap{height:134px}
 .cli-logo-wrap img[src*="global_trans_energi"]{max-height:134px}
@@ -409,7 +409,7 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
   .cli-card{padding:18px 12px;min-height:120px;gap:10px}
   .cli-logo-wrap{height:58px}
   .cli-logo-wrap img{max-height:58px;max-width:min(160px,100%)}
-  .cli-logo-wrap img[src*="cemindo"]{max-width:min(170px,100%)}
+  .cli-logo-wrap img[src*="cemindo"],.cli-logo-wrap img[src*="/wim"]{max-width:min(170px,100%)}
   .cli-card:has(img[src*="global_trans_energi"]) .cli-logo-wrap{height:108px}
   .cli-logo-wrap img[src*="global_trans_energi"]{max-height:108px}
   .cli-init{width:38px;height:38px;font-size:14px}
@@ -446,7 +446,7 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
   .cli-grid{grid-template-columns:1fr}
   .cli-logo-wrap{height:64px}
   .cli-logo-wrap img{max-height:64px;max-width:min(220px,100%)}
-  .cli-logo-wrap img[src*="cemindo"]{max-width:min(240px,100%)}
+  .cli-logo-wrap img[src*="cemindo"],.cli-logo-wrap img[src*="/wim"]{max-width:min(240px,100%)}
   .cli-card:has(img[src*="global_trans_energi"]) .cli-logo-wrap{height:120px}
   .cli-logo-wrap img[src*="global_trans_energi"]{max-height:120px}
 }
@@ -472,6 +472,7 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
     <li><a href="index.html#fleet">Fleet</a></li>
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="index.html#clients">Clients</a></li>
+    <li><a href="compro.html">Compro</a></li>
     <li><a href="index.html#contact" class="nav-btn">Contact Us</a></li>
     <li class="nav-social">
       <a href="https://www.instagram.com/Indonesiaquanta_/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.41a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg></a>
@@ -482,7 +483,7 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-parallax" id="hero-parallax">
-    <img src="assets/ships/hero_max_christo_07.jpg" alt="TB Max Christo 07 alongside barge">
+    <img src="assets/ships/hero_max_christo_07.jpg?v=2" alt="TB Max Christo 07 alongside barge">
   </div>
   <div class="hero-gradient"></div>
   <div class="hero-vignette"></div>
@@ -499,7 +500,7 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
     <div class="hero-stats reveal d5">
       <div class="stat-u"><div class="stat-n"><span class="count-num" data-target="25">0</span>+</div><div class="stat-l">Years at Sea</div></div>
       <div class="stat-u"><div class="stat-n"><span class="count-num" data-target="4">0</span></div><div class="stat-l">Owned Vessels</div></div>
-      <div class="stat-u"><div class="stat-n"><span class="count-num" data-target="17">0</span>+</div><div class="stat-l">Corporate Clients</div></div>
+      <div class="stat-u"><div class="stat-n"><span class="count-num" data-target="26">0</span>+</div><div class="stat-l">Corporate Clients</div></div>
       <div class="stat-u" style="border:none"><div class="stat-n">SOLAS</div><div class="stat-l">Certified Ops</div></div>
     </div>
   </div>
@@ -531,13 +532,13 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
     <div class="about-visuals reveal-left d2">
       <div class="ab-badge">Est. 2000</div>
       <div class="ab-main">
-        <img src="assets/ships/about_taurians.jpg" alt="TB Taurians One">
+        <img src="assets/ships/about_taurians.jpg?v=2" alt="TB Taurians One">
         <div class="ab-cap">TB Taurians One</div>
       </div>
       <div class="ab-corner"></div>
       <div class="ab-mini-grid">
-        <div class="ab-mini ab-mini-cap-wrap"><img src="assets/ships/about_mini_max_christo.jpg" alt="TB Max Christo 07"><div class="ab-mini-cap">TB Max Christo 07</div></div>
-        <div class="ab-mini ab-mini-cap-wrap"><img src="assets/ships/about_mini_bulesko.jpg" alt="BG Bulesko II"><div class="ab-mini-cap">BG Bulesko II</div></div>
+        <div class="ab-mini ab-mini-cap-wrap"><img src="assets/ships/about_mini_max_christo.jpg?v=2" alt="TB Max Christo 07"><div class="ab-mini-cap">TB Max Christo 07</div></div>
+        <div class="ab-mini ab-mini-cap-wrap"><img src="assets/ships/about_mini_bulesko.jpg?v=2" alt="BG Bulesko II"><div class="ab-mini-cap">BG Bulesko II</div></div>
       </div>
     </div>
     <div class="about-copy reveal-right d2">
@@ -599,23 +600,23 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
     <h2 class="sh1 sh1-light reveal d1">Vessels We <em>Operate</em></h2>
     <div class="fleet-gallery reveal d2">
       <div class="gal-cell big">
-        <img src="assets/ships/fleet_gal_big_max_christo.jpg" alt="TB Max Christo 07">
+        <img src="assets/ships/fleet_gal_big_max_christo.jpg?v=2" alt="TB Max Christo 07">
         <div class="gal-label">TB Max Christo 07</div>
       </div>
       <div class="gal-cell">
-        <img src="assets/ships/fleet_gal_taurians_sunset.jpg" alt="BG Bulesko II loading at night">
+        <img src="assets/ships/fleet_gal_taurians_sunset.jpg?v=2" alt="BG Bulesko II loading at night">
         <div class="gal-label">BG Bulesko II — Loading Process (Night)</div>
       </div>
       <div class="gal-cell">
-        <img src="assets/ships/fleet_gal_indomarina.jpg" alt="BG Indomarina 3002">
+        <img src="assets/ships/fleet_gal_indomarina.jpg?v=2" alt="BG Indomarina 3002">
         <div class="gal-label">BG Indomarina 3002</div>
       </div>
       <div class="gal-cell">
-        <img src="assets/ships/fleet_gal_bulesko_river.jpg" alt="BG Bulesko II">
+        <img src="assets/ships/fleet_gal_bulesko_river.jpg?v=2" alt="BG Bulesko II">
         <div class="gal-label">BG Bulesko II — River Transit</div>
       </div>
       <div class="gal-cell">
-        <img src="assets/ships/fleet_gal_bulesko_crane.jpg" alt="BG Bulesko II loading">
+        <img src="assets/ships/fleet_gal_bulesko_crane.jpg?v=2" alt="BG Bulesko II loading">
         <div class="gal-label">BG Bulesko II — Loading Process (Day)</div>
       </div>
     </div>
@@ -623,7 +624,7 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
     <div class="fleet-section-label reveal">— Owned Vessels</div>
     <div class="fleet-grid">
       <div class="fc reveal d1">
-        <div class="fc-thumb" onclick="openVesselLightbox('assets/ships/full_max_christo.jpg','TB Max Christo 07')"><img src="assets/ships/card_max_christo.jpg" alt="TB Max Christo 07"></div>
+        <div class="fc-thumb" onclick="openVesselLightbox('assets/ships/full_max_christo.jpg?v=2','TB Max Christo 07')"><img src="assets/ships/card_max_christo.jpg?v=2" alt="TB Max Christo 07"></div>
         <div class="fc-body">
           <div><h4>TB Max Christo 07</h4><div class="fc-specs">
             <div><div class="spec-k">Call Sign</div><div class="spec-v">YDA 4636</div></div>
@@ -635,7 +636,7 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
         </div>
       </div>
       <div class="fc reveal d2">
-        <div class="fc-thumb" onclick="openVesselLightbox('assets/ships/full_taurians.jpg','TB Taurians One')"><img src="assets/ships/card_taurians.jpg" alt="TB Taurians One"></div>
+        <div class="fc-thumb" onclick="openVesselLightbox('assets/ships/full_taurians.jpg?v=2','TB Taurians One')"><img src="assets/ships/card_taurians.jpg?v=2" alt="TB Taurians One"></div>
         <div class="fc-body">
           <div><h4>TB Taurians One</h4><div class="fc-specs">
             <div><div class="spec-k">Call Sign</div><div class="spec-v">YD 4951</div></div>
@@ -647,7 +648,7 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
         </div>
       </div>
       <div class="fc reveal d3">
-        <div class="fc-thumb" onclick="openVesselLightbox('assets/ships/full_bulesko.jpg','BG Bulesko II')"><img src="assets/ships/card_bulesko.jpg" alt="BG Bulesko II"></div>
+        <div class="fc-thumb" onclick="openVesselLightbox('assets/ships/full_bulesko.jpg?v=2','BG Bulesko II')"><img src="assets/ships/card_bulesko.jpg?v=2" alt="BG Bulesko II"></div>
         <div class="fc-body">
           <div><h4>BG Bulesko II</h4><div class="fc-specs">
             <div><div class="spec-k">Load Cap.</div><div class="spec-v">7,500 MT</div></div>
@@ -659,7 +660,7 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
         </div>
       </div>
       <div class="fc reveal d4">
-        <div class="fc-thumb" onclick="openVesselLightbox('assets/ships/full_indomarina.jpg','BG Indomarina 3002')"><img src="assets/ships/card_indomarina.jpg" alt="BG Indomarina 3002"></div>
+        <div class="fc-thumb" onclick="openVesselLightbox('assets/ships/full_indomarina.jpg?v=2','BG Indomarina 3002')"><img src="assets/ships/card_indomarina.jpg?v=2" alt="BG Indomarina 3002"></div>
         <div class="fc-body">
           <div><h4>BG Indomarina 3002</h4><div class="fc-specs">
             <div><div class="spec-k">Load Cap.</div><div class="spec-v">7,500 MT</div></div>
@@ -678,7 +679,7 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
 <section id="clients">
   <div class="lbl reveal">Our Clients</div>
   <h2 class="sh1 reveal d1">Trusted by <em>Industry Leaders</em></h2>
-  <p class="lead reveal d2">Proudly serving 17+ leading companies across Indonesia's energy, cement, mining, and shipping industries.</p>
+  <p class="lead reveal d2">Proudly serving 26+ leading companies across Indonesia's energy, cement, mining, and shipping industries.</p>
   <div class="cli-grid">
       <div class="cli-card reveal">
         <div class="cli-logo-wrap"><img src="assets/logos/banpu.png?v=2" alt="Banpu Public Company Limited" loading="lazy"></div>
@@ -731,13 +732,40 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
       <div class="cli-card reveal">
         <div class="cli-logo-wrap"><img src="assets/logos/korindo.png?v=2" alt="Korindo Group" loading="lazy"></div>
       </div>
+      <div class="cli-card reveal">
+        <div class="cli-logo-wrap"><img src="assets/logos/wim.png?v=2" alt="PT Wistara Internasional Maritim" loading="lazy"></div>
+      </div>
+      <div class="cli-card reveal">
+        <div class="cli-logo-wrap"><img src="assets/logos/pnlk.png?v=2" alt="PT Pelayaran Nasional Lautan Kumala" loading="lazy"></div>
+      </div>
+      <div class="cli-card reveal">
+        <div class="cli-logo-wrap"><img src="assets/logos/gms.png?v=2" alt="PT Ghani Mandiri Sukses" loading="lazy"></div>
+      </div>
+      <div class="cli-card reveal">
+        <div class="cli-logo-wrap"><img src="assets/logos/kss.png?v=2" alt="PT Krakatau Samudera Solusi" loading="lazy"></div>
+      </div>
+      <div class="cli-card reveal">
+        <div class="cli-init cli-init-sm">SCM</div>
+      </div>
+      <div class="cli-card reveal">
+        <div class="cli-init cli-init-sm">CBR</div>
+      </div>
+      <div class="cli-card reveal">
+        <div class="cli-init cli-init-sm">LTI</div>
+      </div>
+      <div class="cli-card reveal">
+        <div class="cli-init cli-init-sm">SCH</div>
+      </div>
+      <div class="cli-card reveal">
+        <div class="cli-init cli-init-sm">BPA</div>
+      </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="contact-outer" id="contact">
   <div class="contact-parallax-bg" id="contact-parallax">
-    <img src="assets/ships/contact_bg.jpg" alt="Port operations">
+    <img src="assets/ships/contact_bg.jpg?v=2" alt="Port operations">
   </div>
   <div class="contact-color-overlay"></div>
   <div class="contact-inner">
