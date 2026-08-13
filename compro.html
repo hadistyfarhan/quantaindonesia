@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Company Profile — PT Quanta Indonesia</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/favicon-32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="assets/favicon-16.png" sizes="16x16">
+<link rel="apple-touch-icon" href="assets/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -74,20 +78,20 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
    PDF VIEWER (view-only — no download/print/text-select)
    ═══════════════════════════════════════════ */
 .pdf-section{padding:0 80px 120px;background:var(--ink);position:relative;z-index:2}
-.pdf-frame{max-width:1400px;margin:0 auto;background:var(--ink2);border:1px solid rgba(196,151,58,.15);border-radius:6px;overflow:hidden}
+.pdf-frame{max-width:900px;margin:0 auto;background:var(--ink2);border:1px solid rgba(196,151,58,.15);border-radius:6px;overflow:hidden}
 .pdf-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
   padding:14px 22px;background:rgba(6,16,30,.6);border-bottom:1px solid rgba(196,151,58,.12);flex-wrap:wrap}
-.pdf-nav-group{display:flex;align-items:center;gap:10px}
+.pdf-page-indicator{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.7);letter-spacing:.05em}
 .pdf-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:var(--white);
   width:34px;height:34px;border-radius:4px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;
   transition:background .2s,border-color .2s}
 .pdf-btn:hover:not(:disabled){background:rgba(196,151,58,.18);border-color:var(--gold)}
 .pdf-btn:disabled{opacity:.3;cursor:not-allowed}
-.pdf-page-indicator{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.7);letter-spacing:.05em;min-width:86px;text-align:center}
 .pdf-zoom-group{display:flex;align-items:center;gap:8px}
-.pdf-viewport{position:relative;background:#0A1220;min-height:60vh;max-height:78vh;overflow:auto;
-  display:flex;justify-content:center;padding:28px 16px;user-select:none;-webkit-user-select:none}
-.pdf-viewport canvas{box-shadow:0 12px 40px rgba(0,0,0,.4);border-radius:2px;max-width:100%;height:auto}
+.pdf-viewport{position:relative;background:#0A1220;min-height:60vh;max-height:85vh;overflow-y:auto;overflow-x:hidden;
+  display:flex;flex-direction:column;align-items:center;gap:18px;padding:24px 16px;user-select:none;-webkit-user-select:none;
+  scroll-behavior:smooth}
+.pdf-viewport canvas{display:block;box-shadow:0 12px 40px rgba(0,0,0,.4);border-radius:2px;max-width:100%;height:auto}
 .pdf-status{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:14px;color:rgba(255,255,255,.6);text-align:center;padding:40px}
 .pdf-status.hidden{display:none}
@@ -201,11 +205,7 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
 <section class="pdf-section">
   <div class="pdf-frame reveal d3">
     <div class="pdf-toolbar">
-      <div class="pdf-nav-group">
-        <button class="pdf-btn" id="pdf-prev" aria-label="Previous page">‹</button>
-        <span class="pdf-page-indicator" id="pdf-page-indicator">— / —</span>
-        <button class="pdf-btn" id="pdf-next" aria-label="Next page">›</button>
-      </div>
+      <span class="pdf-page-indicator" id="pdf-page-indicator">Page — / —</span>
       <div class="pdf-zoom-group">
         <button class="pdf-btn" id="pdf-zoom-out" aria-label="Zoom out">−</button>
         <button class="pdf-btn" id="pdf-zoom-in" aria-label="Zoom in">+</button>
@@ -277,15 +277,20 @@ const PDF_URL = 'assets/compro/company_profile.pdf';
 const viewport = document.getElementById('pdf-viewport');
 const statusEl = document.getElementById('pdf-status');
 const pageIndicator = document.getElementById('pdf-page-indicator');
-const btnPrev = document.getElementById('pdf-prev');
-const btnNext = document.getElementById('pdf-next');
 const btnZoomIn = document.getElementById('pdf-zoom-in');
 const btnZoomOut = document.getElementById('pdf-zoom-out');
 
 let pdfDoc = null;
-let currentPage = 1;
 let currentScale = 1.0;
-let canvas = null;
+let currentPageInView = 1;
+const pageObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      currentPageInView = Number(entry.target.dataset.page);
+      pageIndicator.textContent = `Page ${currentPageInView} / ${pdfDoc.numPages}`;
+    }
+  });
+}, { root: viewport, threshold: 0.5 });
 
 function setStatus(html) {
   statusEl.innerHTML = html;
@@ -295,51 +300,41 @@ function hideStatus() {
   statusEl.classList.add('hidden');
 }
 
-async function renderPage(num) {
-  const page = await pdfDoc.getPage(num);
-  const unscaled = page.getViewport({ scale: 1 });
-  const fitScale = (viewport.clientWidth - 32) / unscaled.width;
-  const scale = currentScale * fitScale;
-  const pv = page.getViewport({ scale });
+// Continuous scroll: render every page as a stacked canvas, like a native
+// PDF reader — no page-flip buttons, just scroll through the document.
+async function renderAllPages() {
+  viewport.querySelectorAll('canvas').forEach((c) => { pageObserver.unobserve(c); c.remove(); });
+  const containerWidth = viewport.clientWidth - 32;
 
-  if (!canvas) {
-    canvas = document.createElement('canvas');
+  for (let num = 1; num <= pdfDoc.numPages; num++) {
+    const page = await pdfDoc.getPage(num);
+    const unscaled = page.getViewport({ scale: 1 });
+    const scale = currentScale * (containerWidth / unscaled.width);
+    const pv = page.getViewport({ scale });
+
+    const canvas = document.createElement('canvas');
     canvas.oncontextmenu = () => false;
+    canvas.dataset.page = String(num);
+    canvas.width = pv.width;
+    canvas.height = pv.height;
     viewport.appendChild(canvas);
+    pageObserver.observe(canvas);
+
+    const ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport: pv }).promise;
   }
-  const ctx = canvas.getContext('2d');
-  canvas.width = pv.width;
-  canvas.height = pv.height;
-
-  await page.render({ canvasContext: ctx, viewport: pv }).promise;
-  pageIndicator.textContent = `Page ${num} / ${pdfDoc.numPages}`;
-  btnPrev.disabled = num <= 1;
-  btnNext.disabled = num >= pdfDoc.numPages;
+  pageIndicator.textContent = `Page 1 / ${pdfDoc.numPages}`;
 }
 
-async function goTo(num) {
-  if (!pdfDoc || num < 1 || num > pdfDoc.numPages) return;
-  currentPage = num;
-  await renderPage(currentPage);
-}
-
-btnPrev.addEventListener('click', () => goTo(currentPage - 1));
-btnNext.addEventListener('click', () => goTo(currentPage + 1));
-btnZoomIn.addEventListener('click', () => { if (!pdfDoc) return; currentScale = Math.min(currentScale + 0.2, 2.6); renderPage(currentPage); });
-btnZoomOut.addEventListener('click', () => { if (!pdfDoc) return; currentScale = Math.max(currentScale - 0.2, 0.6); renderPage(currentPage); });
-
-document.addEventListener('keydown', (e) => {
-  if (!pdfDoc) return;
-  if (e.key === 'ArrowLeft') goTo(currentPage - 1);
-  if (e.key === 'ArrowRight') goTo(currentPage + 1);
-});
+btnZoomIn.addEventListener('click', () => { if (!pdfDoc) return; currentScale = Math.min(currentScale + 0.2, 2.6); renderAllPages(); });
+btnZoomOut.addEventListener('click', () => { if (!pdfDoc) return; currentScale = Math.max(currentScale - 0.2, 0.6); renderAllPages(); });
 
 (async () => {
   try {
     const loadingTask = pdfjsLib.getDocument({ url: PDF_URL, disableAutoFetch: false });
     pdfDoc = await loadingTask.promise;
     hideStatus();
-    await goTo(1);
+    await renderAllPages();
   } catch (err) {
     setStatus(`
       <h3>Company profile is being prepared</h3>
