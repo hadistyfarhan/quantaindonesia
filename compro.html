@@ -102,9 +102,9 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
 .pdf-note{padding:16px 22px;font-size:11px;color:rgba(255,255,255,.35);border-top:1px solid rgba(196,151,58,.1);
   display:flex;align-items:center;gap:8px}
 
-@media (max-width: 900px) {
-}
-
+/* ═══════════════════════════════════════════
+   HAMBURGER MENU
+   ═══════════════════════════════════════════ */
 .nav-hamburger{
   display:none;flex-direction:column;justify-content:center;gap:5px;
   width:32px;height:32px;background:none;border:none;cursor:pointer;padding:0;z-index:210;
@@ -117,11 +117,39 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
 .nav-hamburger.active span:nth-child(2){opacity:0}
 .nav-hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
+/* ═══════════════════════════════════════════
+   LARGE DESKTOP — max-width: 1200px
+   ═══════════════════════════════════════════ */
+@media (max-width: 1200px) {
+  .g-hero{padding:150px 60px 60px}
+  .pdf-section{padding:0 60px 100px}
+}
+
+/* ═══════════════════════════════════════════
+   TABLET — max-width: 1024px
+   ═══════════════════════════════════════════ */
 @media (max-width: 1024px) {
   .g-hero{padding:140px 40px 50px}
   .pdf-section{padding:0 40px 90px}
+  .g-h1{font-size:clamp(36px,5.5vw,58px)}
+  .g-lead{font-size:15px}
 }
 
+/* ═══════════════════════════════════════════
+   MEDIUM TABLET — max-width: 900px
+   ═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav{padding:0 28px}
+  .g-hero{padding:130px 35px 48px}
+  .g-h1{font-size:clamp(32px,5vw,50px)}
+  .g-lead{font-size:14.5px}
+  .pdf-section{padding:0 35px 80px}
+  .pdf-btn{width:32px;height:32px}
+}
+
+/* ═══════════════════════════════════════════
+   SMALL TABLET — max-width: 768px
+   ═══════════════════════════════════════════ */
 @media (max-width: 768px) {
   body{overflow-x:hidden}
   nav{padding:0 20px;height:64px}
@@ -150,16 +178,84 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
   .g-back{margin-top:20px}
 
   .pdf-section{padding:0 16px 70px}
-  .pdf-toolbar{padding:10px 14px}
+  .pdf-toolbar{padding:10px 14px;gap:10px;flex-wrap:wrap}
   .pdf-btn{width:30px;height:30px;font-size:13px}
   .pdf-page-indicator{font-size:10px;min-width:66px}
   .pdf-viewport{padding:18px 10px;min-height:50vh}
 
   footer{padding:28px 20px;flex-direction:column;gap:18px;align-items:flex-start}
-  .f-l{flex-direction:column;align-items:flex-start;gap:10px}
-  .f-r{flex-wrap:wrap;gap:14px}
+  .f-l{flex-direction:column;align-items:flex-start;gap:10px;font-size:10px}
+  .f-r{flex-wrap:wrap;gap:14px;font-size:10px}
 
   .wm-overlay{width:300px;height:300px;bottom:-46px;left:50%;right:auto;transform:translateX(-50%);opacity:.06}
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE — max-width: 600px
+   ═══════════════════════════════════════════ */
+@media (max-width: 600px) {
+  .g-hero{padding:100px 16px 38px}
+  .g-lbl{margin-bottom:12px;font-size:9px}
+  .g-h1{font-size:clamp(26px,8vw,38px);margin-bottom:16px}
+  .g-lead{font-size:13px}
+  .g-back{margin-top:18px;font-size:10px}
+
+  .pdf-section{padding:0 14px 60px}
+  .pdf-frame{border-radius:4px}
+  .pdf-toolbar{padding:10px 12px;gap:8px}
+  .pdf-btn{width:28px;height:28px;font-size:12px}
+  .pdf-page-indicator{font-size:9px}
+  .pdf-viewport{padding:14px 10px;min-height:45vh;max-height:70vh}
+  .pdf-note{padding:12px 14px;font-size:10px}
+
+  footer{padding:24px 16px;font-size:9px}
+  .f-l{gap:8px}
+  .f-r{gap:10px}
+}
+
+/* ═══════════════════════════════════════════
+   SMALL MOBILE — max-width: 480px
+   ═══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  nav{padding:0 14px}
+  .nav-menu{padding:28px 22px}
+  .g-hero{padding:90px 14px 34px}
+  .g-lbl{font-size:8px;margin-bottom:10px}
+  .g-h1{font-size:clamp(24px,7.5vw,34px);margin-bottom:12px}
+  .g-lead{font-size:12.5px}
+  .g-back{margin-top:16px;font-size:9px}
+
+  .pdf-section{padding:0 12px 55px}
+  .pdf-toolbar{padding:8px 10px;gap:6px}
+  .pdf-btn{width:26px;height:26px;font-size:11px}
+  .pdf-page-indicator{font-size:8px}
+  .pdf-viewport{padding:12px 8px;min-height:40vh}
+  .pdf-note{padding:10px 12px;font-size:9px;gap:6px}
+
+  footer{padding:20px 14px}
+}
+
+/* ═══════════════════════════════════════════
+   TINY MOBILE — max-width: 380px
+   ═══════════════════════════════════════════ */
+@media (max-width: 380px) {
+  nav{padding:0 12px;height:60px}
+  .nav-logo-img{height:30px}
+  .nav-id{font-size:10px}
+  .nav-id small{font-size:7px}
+  .g-hero{padding:80px 12px 30px}
+  .g-lbl{font-size:7px}
+  .g-h1{font-size:clamp(22px,7vw,30px);margin-bottom:10px}
+  .g-lead{font-size:12px}
+  .g-back{margin-top:14px}
+
+  .pdf-section{padding:0 10px 50px}
+  .pdf-toolbar{padding:8px 10px}
+  .pdf-btn{width:24px;height:24px;font-size:10px}
+  .pdf-viewport{padding:10px 8px;min-height:35vh}
+  .pdf-note{padding:8px 10px;font-size:8px}
+
+  footer{padding:16px 12px;font-size:8px}
 }
 
 /* Best-effort: hide the viewer when someone tries to print the page */
