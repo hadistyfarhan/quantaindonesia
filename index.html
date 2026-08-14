@@ -297,9 +297,10 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
 .nav-hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* ═══════════════════════════════════════════
-   LARGE DESKTOP / MEDIUM DEVICES — 1200px - 1024px
+   LARGE DESKTOP / MEDIUM DEVICES — 1440px - 1024px
+   (covers common laptop resolutions like 1366x768, 1440x900)
    ═══════════════════════════════════════════ */
-@media (max-width: 1200px) {
+@media (max-width: 1440px) {
   section{padding:100px 60px}
   .hero-body{padding:0 60px 80px;max-width:680px}
   .hero-h1{font-size:clamp(38px,3.8vw,54px);line-height:1.08;margin-bottom:8px}
@@ -310,6 +311,24 @@ footer{background:#040B15;padding:36px 80px;display:flex;align-items:center;just
   .about-grid{gap:70px}
   .vm-wrap{gap:24px}
   .contact-wrap{gap:70px}
+}
+
+/* ═══════════════════════════════════════════
+   SHORT VIEWPORT HEIGHT — max-height: 800px
+   (laptops at 768px-tall screens need a more compact hero
+   so "SHIPPING" isn't pushed up under the fixed nav bar)
+   ═══════════════════════════════════════════ */
+@media (max-height: 800px) and (min-width: 769px) {
+  .hero-body{padding-bottom:56px}
+  .hero-kicker{margin-bottom:14px}
+  .hero-h1{font-size:clamp(34px,3.4vw,48px);line-height:1.06;margin-bottom:4px}
+  .hero-rule{margin:14px 0}
+  .hero-sub{font-size:14.5px;line-height:1.6;margin-bottom:24px}
+  .hero-actions{margin-bottom:28px}
+  .btn-a,.btn-b{padding:12px 30px}
+  .hero-stats{gap:0}
+  .stat-u{padding:10px 30px}
+  .stat-n{font-size:30px}
 }
 
 /* ═══════════════════════════════════════════
